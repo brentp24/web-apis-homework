@@ -108,6 +108,7 @@ var answer1Span = document.querySelector("#answer1");
 var answer2Span = document.querySelector("#answer2");
 var answer3Span = document.querySelector("#answer3");
 var answer4Span = document.querySelector("#answer4");
+var bottomSection = document.querySelector(".result")
 
 
 var next = document.querySelector(".next");
@@ -120,7 +121,8 @@ if (status = "Not Started") {
     answer1Span.style.display = "none";
     answer2Span.style.display = "none";
     answer3Span.style.display = "none";
-    answer4Span.style.display = "none"
+    answer4Span.style.display = "none";
+    bottomSection.style.display = "none";
 }
 
 
@@ -218,6 +220,7 @@ function showQuestions() {
     answer2Span.style.display = "inline-block";
     answer3Span.style.display = "inline-block";
     answer4Span.style.display = "inline-block";
+    bottomSection.style.display = "inline-block";
 
     askQuestionSpan.innerText = questions[counter].askQuestion;
     if (typeof (questions[counter].answer1) != "undefined") { answer1Span.innerText = questions[counter].answer1; } else { answer1Span.style.display = "none"; }
