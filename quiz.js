@@ -30,6 +30,96 @@ var status;
 var secondsElapsed = 0;
 var interval;
 var timeStarted = false;
+var Question1 = {
+    askQuestion: "Inside which HTML element do we put the JavaScript?",
+    answer1: "1. <scripting>",
+    answer2: "2. <javascript>",
+    answer3: "3. <js>",
+    answer4: "4. <script>",
+    correctAnswer: "4. <script>"
+}
+
+var Question2 = {
+    askQuestion: "Where is the correct place to insert a JavaScript?",
+    answer1: "1. Both the <head> section and the <body> section are correct",
+    answer2: "2. The <body> section",
+    answer3: "3. The <head> section",
+    correctAnswer: "1. Both the <head> section and the <body> section are correct"
+}
+
+var Question3 = {
+    askQuestion: "The external JavaScript file must contain the <script> tag.",
+    answer1: "True",
+    answer2: "False",
+    correctAnswer: "False"
+}
+
+var Question4 = {
+    askQuestion: "How do you write 'Hello World' in an alert box?",
+    answer1: "1. alert('Hello World');",
+    answer2: "2. msg('Hello World');",
+    answer3: "3. alertBox('Hello World');",
+    answer4: "4. msgBox('Hello World');",
+    correctAnswer: "1. alert('Hello World');"
+}
+
+var Question5 = {
+    askQuestion: "How do you create a function in JavaScript?",
+    answer1: "1. function = myFunction()",
+    answer2: "2. function myFunction()",
+    answer3: "3. function:myFunction()",
+    correctAnswer: "2. function myFunction()"
+}
+
+var Question6 = {
+    askQuestion: "How do you call a function named 'myFunction'?",
+    answer1: "1. call myFunction()",
+    answer2: "2. call function myFunction()",
+    answer3: "3. myFunction()",
+    correctAnswer: "3. myFunction()"
+}
+
+var Question7 = {
+    askQuestion: "How to write an IF statement in JavaScript?",
+    answer1: "1. if i = 5",
+    answer2: "2. if (i == 5)",
+    answer3: "3. if i == 5 then",
+    answer4: "4. if i = 5 then",
+    correctAnswer: "2. if (i == 5)"
+}
+
+var Question8 = {
+    askQuestion: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+    answer1: "1. if i <> 5",
+    answer2: "2. if (i <> 5)",
+    answer3: "3. if i =! 5 then",
+    answer4: "4. if (i != 5)",
+    correctAnswer: "4. if (i != 5)"
+}
+
+questions = [Question1, Question2, Question3, Question4, Question5, Question6, Question7, Question8]
+
+var counter = 0;
+var askQuestionSpan = document.querySelector("#question");
+var answer1Span = document.querySelector("#answer1");
+var answer2Span = document.querySelector("#answer2");
+var answer3Span = document.querySelector("#answer3");
+var answer4Span = document.querySelector("#answer4");
+var answersSpan = [answer1Span, answer2Span, answer3Span, answer4Span]
+
+var next = document.querySelector(".next");
+
+//hide questions before the quiz starts
+if (status = "Not Started") {
+    askQuestionSpan.style.display = "none";
+    answer1Span.style.display = "none";
+    answer2Span.style.display = "none";
+    answer3Span.style.display = "none";
+    answer4Span.style.display = "none"
+} 
+
+
+
 
 //Start timer by clicking start
 
@@ -51,6 +141,7 @@ function startTimer() {
         renderTime();
     }, 1000);
     showQuestions();
+    console.log("hi");
 }
 // set timer to 2 minutes
 function setTime() {
@@ -113,13 +204,22 @@ setTime();
 renderTime();
 
 
-questions = ["hi", "hello", 3, 4, 5, 6, 7, 8]
-var counter = 0;
-var questionSpan = document.querySelector("#question");
-var next = document.querySelector(".next");
+
+
 
 function showQuestions() {
-    questionSpan.innerHTML = questions[counter];
+        askQuestionSpan.style.display = "block";
+        answer1Span.style.display = "inline-block";
+        answer2Span.style.display = "inline-block";
+        answer3Span.style.display = "inline-block";
+        answer4Span.style.display = "inline-block";
+
+    askQuestionSpan.innerText = questions[counter].askQuestion;
+    if (typeof (questions[counter].answer1) != "undefined") { answer1Span.innerText = questions[counter].answer1; } else { answer1Span.style.display = "none"; }
+    if (typeof (questions[counter].answer2) != "undefined") { answer2Span.innerText = questions[counter].answer2; } else { answer2Span.style.display = "none"; }
+    if (typeof (questions[counter].answer3) != "undefined") { answer3Span.innerText = questions[counter].answer3; } else { answer3Span.style.display = "none"; }
+    if (typeof (questions[counter].answer4) != "undefined") { answer4Span.innerText = questions[counter].answer4; } else { answer4Span.style.display = "none"; }
+
 }
 
 
@@ -127,11 +227,13 @@ function showQuestions() {
 next.onclick = function () {
     if (counter < questions.length - 1) {
         counter = counter + 1;
-        questionSpan.innerHTML = questions[counter];
-        console.log(questions[counter]);
+        //questionSpan.innerHTML = questions[counter];
+        showQuestions()
 
-    } else {console.log("hi");
-    endGame()}
+    } else {
+        console.log("end of Game");
+        endGame()
+    }
 }
 
 
@@ -155,3 +257,7 @@ function endGame() {
 
     //window.location.href = "alldone.html" ; 
 }
+
+
+
+

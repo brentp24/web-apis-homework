@@ -7,7 +7,7 @@
     <title>Quiz time!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <style src="style.css"></style>
+        <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
@@ -37,8 +37,12 @@
         <div>
             <button class="btn btn-primary" id="start-button">Start</button>
         </div>
-        <div id="question">Questions</div>
-
+        <h2 id="question"></h2><br>
+        <div class = "btn btn-primary" id="answer1"></div><br>
+        <div class = "btn btn-primary" id="answer2"></div><br>
+        <div class = "btn btn-primary" id="answer3"></div><br>
+        <div class = "btn btn-primary" id="answer4"></div><br>
+        <br>
 
         <div class="buttons">
             <button class="next">
@@ -46,7 +50,7 @@
             </button>
         </div>
         <p>Total Correct: <span id="correct">0</span></p>
-        <p>Total Answered: <span id="answered">0</span></p>
+      
 
         <script src="quiz.js"> </script>
 
