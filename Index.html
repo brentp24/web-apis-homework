@@ -7,61 +7,66 @@
     <title>Quiz time!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Coding Quiz</a>
-            <div class="status">Status: <span id="status">Not Started</span></div>
-            <label class = "label">Time remaining: </label>
-            <div class="time">
-                <div id="minutes"></div>
-                <div id="seconds"></div>
-            </div>
-           
-          </form>
+        <div class="status">Status: <span id="status">Not Started</span></div>
+        <label class="label">Time remaining: </label>
+        <div class="time">
+            <div id="minutes"></div>
+            <div id="seconds"></div>
         </div>
-      </nav>
-    
-    
-        <div class="container" id ="instructions">
-            <h1>Code Quiz Challenge!</h1>
-            <br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, quisquam? Sunt dignissimos temporibus tempora
-            cumque soluta atque? Expedita voluptates rem commodi illo, labore tenetur nihil ab culpa, doloribus vel
-            nemo?.
-        </div>
-        <br>
 
-        <div>
-            <button class="btn btn-primary" id="start-button">Start</button>
+        </form>
         </div>
+    </nav>
+
+
+    <div class="container" id="instructions">
+        <h1>Code Quiz Challenge!</h1>
+        <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, quisquam? Sunt dignissimos temporibus tempora
+        cumque soluta atque? Expedita voluptates rem commodi illo, labore tenetur nihil ab culpa, doloribus vel
+        nemo?.
+    </div>
+    <br>
+
+    <div class="container">
+        <button class="btn btn-primary" id="start-button">Start</button>
+    </div>
+    
+    <section class="container">
         <h2 id="question"></h2><br>
-        <div class = "btn btn-primary" id="answer1"></div><br>
-        <div class = "btn btn-primary" id="answer2"></div><br>
-        <div class = "btn btn-primary" id="answer3"></div><br>
-        <div class = "btn btn-primary" id="answer4"></div><br>
+        <div class="btn btn-primary" id="answer1"></div><br>
+        <div class="btn btn-primary" id="answer2"></div><br>
+        <div class="btn btn-primary" id="answer3"></div><br>
+        <div class="btn btn-primary" id="answer4"></div><br>
         <br>
+    </section>
 
-        <div id = "result"></div><br>
+    <section class="container">
+        <div id="result"></div><br>
 
 
         <p>Total Correct: <span id="score">0</span></p>
 
-        
-        <div class="buttons">
-            <button class="next">
-                Next ▶
-            </button>
-        </div>
+    </section>
 
-       
+    <div class=" container buttons">
+        <button class="next">
+            Next ▶
+        </button>
+    </div>
 
-      
 
-        <script src="quiz.js"> </script>
+
+
+
+    <script src="quiz.js"> </script>
 
 </body>
 
