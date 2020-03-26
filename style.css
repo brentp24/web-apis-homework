@@ -6,3 +6,32 @@
     margin: 5px;
 
 }
+
+
+#result {
+    font-style: italic;
+    font-size: large;
+    
+}
+
+
+.label {
+    position: absolute;
+    right: 50px;
+
+
+}
+.time {
+    position: fixed;
+    right: 10px;
+
+}
+
+.status {
+    position: absolute;
+    left: 250px;
+}
+
+#score {
+    font-size: large;
+}

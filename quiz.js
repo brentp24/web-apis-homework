@@ -25,11 +25,14 @@ var minutesDisplay = document.querySelector("#minutes");
 var secondsDisplay = document.querySelector("#seconds");
 var startButton = document.querySelector("#start-button");
 var instructions = document.querySelector("#instructions");
+var resultSpan = document.querySelector("#result");
 var totalSeconds = 0;
 var status;
 var secondsElapsed = 0;
 var interval;
 var timeStarted = false;
+
+//Declare question objects!
 var Question1 = {
     askQuestion: "Inside which HTML element do we put the JavaScript?",
     answer1: "1. <scripting>",
@@ -105,9 +108,11 @@ var answer1Span = document.querySelector("#answer1");
 var answer2Span = document.querySelector("#answer2");
 var answer3Span = document.querySelector("#answer3");
 var answer4Span = document.querySelector("#answer4");
-var answersSpan = [answer1Span, answer2Span, answer3Span, answer4Span]
+
 
 var next = document.querySelector(".next");
+var displayScore = document.querySelector("#score");
+var score = 0;
 
 //hide questions before the quiz starts
 if (status = "Not Started") {
@@ -116,7 +121,7 @@ if (status = "Not Started") {
     answer2Span.style.display = "none";
     answer3Span.style.display = "none";
     answer4Span.style.display = "none"
-} 
+}
 
 
 
@@ -208,11 +213,11 @@ renderTime();
 
 
 function showQuestions() {
-        askQuestionSpan.style.display = "block";
-        answer1Span.style.display = "inline-block";
-        answer2Span.style.display = "inline-block";
-        answer3Span.style.display = "inline-block";
-        answer4Span.style.display = "inline-block";
+    askQuestionSpan.style.display = "block";
+    answer1Span.style.display = "inline-block";
+    answer2Span.style.display = "inline-block";
+    answer3Span.style.display = "inline-block";
+    answer4Span.style.display = "inline-block";
 
     askQuestionSpan.innerText = questions[counter].askQuestion;
     if (typeof (questions[counter].answer1) != "undefined") { answer1Span.innerText = questions[counter].answer1; } else { answer1Span.style.display = "none"; }
@@ -224,7 +229,63 @@ function showQuestions() {
 
 
 
+answer1Span.onclick = function () {
+        resultSpan.style.display = "block";
+        if (questions[counter].answer1 === questions[counter].correctAnswer) 
+            { resultSpan.innerText = "Correct!"; 
+              resultSpan.style.color = "green";   
+              score = score +1;               
+            }
+     else { resultSpan.innerText = "Wrong!";
+            resultSpan.style.color = "red"
+            };
+            displayScore.innerText = score
+}
+
+answer2Span.onclick = function () {
+    resultSpan.style.display = "block";
+    if (questions[counter].answer2 === questions[counter].correctAnswer) 
+        { resultSpan.innerText = "Correct!"; 
+          resultSpan.style.color = "green";
+          score = score +1;                  
+        }
+ else { resultSpan.innerText = "Wrong!";
+        resultSpan.style.color = "red"
+        };
+        displayScore.innerText = score
+}
+
+answer3Span.onclick = function () {
+    resultSpan.style.display = "block";
+    if (questions[counter].answer3 === questions[counter].correctAnswer) 
+        { resultSpan.innerText = "Correct!"; 
+          resultSpan.style.color = "green";
+          score = score +1;                  
+        }
+ else { resultSpan.innerText = "Wrong!";
+        resultSpan.style.color = "red"
+        };
+        displayScore.innerText = score
+}
+
+answer4Span.onclick = function () {
+    resultSpan.style.display = "block";
+    if (questions[counter].answer4 === questions[counter].correctAnswer) 
+        { resultSpan.innerText = "Correct!"; 
+          resultSpan.style.color = "green";
+          score = score +1;                  
+        }
+ else { resultSpan.innerText = "Wrong!";
+        resultSpan.style.color = "red"
+        };
+        displayScore.innerText = score
+}
+
+
+
+
 next.onclick = function () {
+    resultSpan.style.display = "none";
     if (counter < questions.length - 1) {
         counter = counter + 1;
         //questionSpan.innerHTML = questions[counter];
@@ -235,6 +296,7 @@ next.onclick = function () {
         endGame()
     }
 }
+
 
 
 
