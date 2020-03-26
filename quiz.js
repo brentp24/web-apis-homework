@@ -11,7 +11,6 @@
 // THEN I can save my initials and score
 //Timer using the tomato timer as a template
 
-
 //Declare question objects!
 var Question1 = {
     askQuestion: "Inside which HTML element do we put the JavaScript?",
@@ -91,7 +90,7 @@ var status;
 var secondsElapsed = 0;
 var interval;
 var timeStarted = false;
-var questions = [Question1, Question2, Question3, Question4, Question5, Question6, Question7, Question8]
+var questions = [Question1, Question2, Question3, Question4]
 var counter = 0;
 var askQuestionSpan = document.querySelector("#question");
 var answer1Span = document.querySelector("#answer1");
@@ -104,14 +103,16 @@ var penalty = 0;
 var next = document.querySelector(".next");
 var displayScore = document.querySelector("#score");
 var score = 0;
+var finalDisplay = document.querySelector(".final")
 
 //hide questions before the quiz starts
 if (status = "Not Started") {
-    askQuestionSpan.style.display = "none";
+    askQuestionSpan.style.display = "none"; 
     for (i = 0; i < answersSpan.length; i++) {
         answersSpan[i].style.display = "none"
     };
     bottomSection.style.display = "none";
+    finalDisplay.style.display = "none";
 }
 
 //Start timer by clicking start
@@ -140,22 +141,16 @@ function setTime() {
     totalSeconds = minutes * 60;
 }
 
-
 //These two functions are just for making sure the numbers look nice for the html elements
 function getFormattedMinutes() {
-    //
     var secondsLeft = totalSeconds - secondsElapsed;
-
     var minutesLeft = Math.floor(secondsLeft / 60);
-
     var formattedMinutes;
-
     if (minutesLeft < 10) {
         formattedMinutes = "0" + minutesLeft;
     } else {
         formattedMinutes = minutesLeft;
     }
-
     return formattedMinutes;
 }
 
@@ -181,14 +176,16 @@ function renderTime() {
         endGame();
     }
 }
+
 /* This function stops the interval and also resets secondsElapsed 
-   and calls "setTime()" which effectively reset the timer 
+    and calls "setTime()" which effectively reset the timer 
    to the input selections workMinutesInput.value and restMinutesInput.value */
 function stopTimer() {
     secondsElapsed = 0;
     setTime();
     renderTime();
 }
+
 //This is where the app is really kicked-off, setTime and renderTime are the two main routines.
 setTime();
 renderTime();
@@ -200,7 +197,6 @@ function showQuestions() {
         answersSpan[i].style.display = "inline-block"
     };
     bottomSection.style.display = "inline-block";
-
     askQuestionSpan.innerText = questions[counter].askQuestion;
     if (typeof (questions[counter].answer1) != "undefined") { answer1Span.innerText = questions[counter].answer1; } else { answer1Span.style.display = "none"; }
     if (typeof (questions[counter].answer2) != "undefined") { answer2Span.innerText = questions[counter].answer2; } else { answer2Span.style.display = "none"; }
@@ -208,7 +204,7 @@ function showQuestions() {
     if (typeof (questions[counter].answer4) != "undefined") { answer4Span.innerText = questions[counter].answer4; } else { answer4Span.style.display = "none"; }
 
 }
- // after clicking on one of the answers, you need to disable the buttons so you only get one answer. 
+// after clicking on one of the answers, you need to disable the buttons so you only get one answer. 
 function disableButtons() {
     for (i = 0; i < answersSpan.length; i++) {
         answersSpan[i].disabled = true
@@ -229,9 +225,8 @@ function wrongAnswer() {
     disableButtons();
     secondsElapsed = secondsElapsed + penalty;
     displayScore.innerText = score
-
-
 }
+
 // what happens when you get a right answer
 function rightAnswer() {
     resultSpan.innerText = "Correct!";
@@ -241,8 +236,6 @@ function rightAnswer() {
     disableButtons();
     secondsElapsed = secondsElapsed + penalty;
     displayScore.innerText = score
-
-
 }
 
 // When you click on an answer. 
@@ -298,20 +291,46 @@ next.onclick = function () {
     }
 }
 
-
-
-
 //End of game 
+
 function endGame() {
     status = "Game over";
     statusSpan.textContent = status;
-    console.log("end of game")
     askQuestionSpan.style.display = "none";
     for (i = 0; i < answersSpan.length; i++) {
         answersSpan[i].style.display = "none"
     };
     bottomSection.style.display = "none";
+    
+    finalDisplay.style.display = "block";
+    document.querySelector("#final-score").innerText = score;
+    renderScoresList();
+    
+    
 }
+var initialsInput = document.querySelector("#user-initials");
+var submitButton = document.querySelector("#submit");
+
+
+function renderScoresList() {
+  var initials = localStorage.getItem("user-initials");
+
+  if (initials === null) {
+    return;
+  }
+
+  userInitialsSpan.textContent = initialsInput;
+}
+
+submitButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  var  initials = document.querySelector("#user-initials").value;
+    localStorage.setItem("email", initials);
+    renderScoresList();
+  
+});
+
+
 
 
 
