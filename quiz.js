@@ -108,6 +108,7 @@ var answer1Span = document.querySelector("#answer1");
 var answer2Span = document.querySelector("#answer2");
 var answer3Span = document.querySelector("#answer3");
 var answer4Span = document.querySelector("#answer4");
+var answersSpan = [answer1Span, answer2Span, answer3Span, answer4Span]
 var bottomSection = document.querySelector(".result")
 
 
@@ -118,10 +119,8 @@ var score = 0;
 //hide questions before the quiz starts
 if (status = "Not Started") {
     askQuestionSpan.style.display = "none";
-    answer1Span.style.display = "none";
-    answer2Span.style.display = "none";
-    answer3Span.style.display = "none";
-    answer4Span.style.display = "none";
+    for (i=0; i < answersSpan.length; i++){
+    answersSpan[i].style.display = "none"};
     bottomSection.style.display = "none";
 }
 
@@ -211,15 +210,10 @@ setTime();
 renderTime();
 
 
-
-
-
 function showQuestions() {
     askQuestionSpan.style.display = "block";
-    answer1Span.style.display = "inline-block";
-    answer2Span.style.display = "inline-block";
-    answer3Span.style.display = "inline-block";
-    answer4Span.style.display = "inline-block";
+    for (i=0; i < answersSpan.length; i++) {
+    answersSpan[i].style.display = "inline-block"};
     bottomSection.style.display = "inline-block";
 
     askQuestionSpan.innerText = questions[counter].askQuestion;
@@ -230,7 +224,14 @@ function showQuestions() {
 
 }
 
-
+function disableButtons() {
+    for (i=0; i < answersSpan.length; i++) {
+    answersSpan[i].disabled = true}
+  }
+  function enableButtons() {
+    for (i=0; i < answersSpan.length; i++) {
+    answersSpan[i].disabled = false}
+  }
 
 answer1Span.onclick = function () {
         resultSpan.style.display = "block";
@@ -242,6 +243,7 @@ answer1Span.onclick = function () {
      else { resultSpan.innerText = "Wrong!";
             resultSpan.style.color = "red"
             };
+            disableButtons();
             displayScore.innerText = score
 }
 
@@ -255,6 +257,7 @@ answer2Span.onclick = function () {
  else { resultSpan.innerText = "Wrong!";
         resultSpan.style.color = "red"
         };
+        disableButtons();
         displayScore.innerText = score
 }
 
@@ -268,6 +271,7 @@ answer3Span.onclick = function () {
  else { resultSpan.innerText = "Wrong!";
         resultSpan.style.color = "red"
         };
+        disableButtons();
         displayScore.innerText = score
 }
 
@@ -281,6 +285,7 @@ answer4Span.onclick = function () {
  else { resultSpan.innerText = "Wrong!";
         resultSpan.style.color = "red"
         };
+        disableButtons();
         displayScore.innerText = score
 }
 
@@ -289,6 +294,7 @@ answer4Span.onclick = function () {
 
 next.onclick = function () {
     resultSpan.style.display = "none";
+    enableButtons();
     if (counter < questions.length - 1) {
         counter = counter + 1;
         //questionSpan.innerHTML = questions[counter];
