@@ -90,7 +90,7 @@ var status;
 var secondsElapsed = 0;
 var interval;
 var timeStarted = false;
-var questions = [Question1, Question2, Question3, Question4, Question5, Question6, Question7, Question8]
+var questions = [Question1, Question2, Question3]
 var counter = 0;
 var askQuestionSpan = document.querySelector("#question");
 var answer1Span = document.querySelector("#answer1");
@@ -104,15 +104,18 @@ var next = document.querySelector(".next");
 var displayScore = document.querySelector("#score");
 var score = 0;
 var finalDisplay = document.querySelector(".final")
+var highScoresDisplay = document.querySelector(".high-scores")
+var restartButton = document.querySelector("#restart-button");
 
 //hide questions before the quiz starts
 if (status = "Not Started") {
-    askQuestionSpan.style.display = "none"; 
+    askQuestionSpan.style.display = "none";
     for (i = 0; i < answersSpan.length; i++) {
         answersSpan[i].style.display = "none"
     };
     bottomSection.style.display = "none";
     finalDisplay.style.display = "none";
+    highScoresDisplay.style.display = "none"
 }
 
 //Start timer by clicking start
@@ -124,9 +127,8 @@ function startTimer() {
     status = "Running";
     startButton.style.display = "none";
     instructions.style.display = "none";
+    highScoresDisplay.style.display = "none";
     statusSpan.textContent = status;
-    /* the "interval" variable here using "setInterval()" begins the recurring increment of the 
-       secondsElapsed variable which is used to check if the time is up */
     interval = setInterval(function () {
         secondsElapsed++;
         //So renderTime() is called here once every second.
@@ -301,34 +303,62 @@ function endGame() {
         answersSpan[i].style.display = "none"
     };
     bottomSection.style.display = "none";
-    
+
     finalDisplay.style.display = "block";
     document.querySelector("#final-score").innerText = score;
-    renderScoresList();
-    
-    
 }
 var initialsInput = document.querySelector("#user-initials");
 var submitButton = document.querySelector("#submit");
+var highScoreList = document.querySelector("#high-scores");
+var highScoreCount = document.querySelector("#high-score-count");
+var highScores = [];
 
 
 function renderScoresList() {
-  var initials = localStorage.getItem("user-initials");
-
-  if (initials === null) {
-    return;
-  }
-
-  userInitialsSpan.textContent = initialsInput;
+    // Clear high score list element and update score count
+    highScoreList.innerHTML = "";
+    highScoreCount.textContent = highScores.length;
+    // Render a new li for each highScore
+    for (var i = 0; i < highScores.length; i++) {
+        var highScore = highScores[i];
+        var li = document.createElement("li");
+        li.textContent = highScore;
+        li.setAttribute("data-index", i);
+        var button = document.createElement("button");
+        button.textContent = score;
+        li.appendChild(button);
+        highScoreList.appendChild(li);
+    }
 }
 
-submitButton.addEventListener("click", function(event) {
-  event.preventDefault();
-  var  initials = document.querySelector("#user-initials").value;
-    localStorage.setItem("email", initials);
+// When score is submitted
+submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    var initials = document.querySelector("#user-initials").value.trim();
+    // Return from function early if submitted initials are blank
+    if (initials === "") {
+        return;
+    }
+    highScores.push(initials); // Add new Initials 
+    initialsInput.value = "";
+    localStorage.setItem("initials", initials);
+    finalDisplay.style.display = "none"
+    highScoresDisplay.style.display = "block";
     renderScoresList();
-  
+    storeHighScores();
 });
+
+function storeHighScores() {
+    // Stringify and set "todos" key in localStorage to todos array
+    localStorage.setItem("user-initials", JSON.stringify(highScores));
+};
+
+restartButton.onclick = function() {
+counter = 0;
+score = 0;
+displayScore.innerText = score
+startTimer();
+}
 
 
 

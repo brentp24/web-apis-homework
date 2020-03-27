@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Coding Quiz</a>
-        <div class="status">Status: <span id="status">Not Started</span></div>
+        <div class="status"><span id="status">Not Started</span></div>
         <label class="label">Time remaining: </label>
         <div class="time">
             <div id="minutes"></div>
@@ -65,6 +65,16 @@
         <p><strong>Enter your initials:</strong></p>
         <input class="form-control" id="user-initials">
         <button class = "btn btn-secondary" id = "submit">Submit</button>
+    </section>
+
+    <section class = "high-scores">
+        <h1>High Scores</h1>
+        <ul id="high-scores"></ul>
+        <p>Submissions: <span id="high-score-count">0</span></p>
+        <div class="container">
+            <button class="btn btn-primary" id="restart-button">Try Again</button>
+        </div>
+
     </section>
 
     <script src="quiz.js"> </script>

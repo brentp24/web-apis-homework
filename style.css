@@ -29,7 +29,7 @@
 
 .status {
     position: absolute;
-    left: 250px;
+    left: 200px;
 }
 
 #score {
@@ -46,3 +46,27 @@
      width: 100px; 
      margin: 10px; 
  }
+
+ li {
+    height: 50px;
+    width: 150px;
+    padding: 5px;
+    color: black;
+    background-color: white;
+    font-size: 1.5em;
+    line-height: 1.5;
+    list-style: none;
+    border-top: 1px;
+    border-color: darkblue;  
+  }
+
+  li button {
+    float: right;
+    border: none;
+    height: 50px;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    font-size: 1em;
+    line-height: 1.5;
+  }
