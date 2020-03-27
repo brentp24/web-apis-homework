@@ -90,7 +90,7 @@ var status;
 var secondsElapsed = 0;
 var interval;
 var timeStarted = false;
-var questions = [Question1, Question2, Question3]
+var questions = [Question1, Question2, Question3, Question4, Question5, Question6, Question7, Question8]
 var counter = 0;
 var askQuestionSpan = document.querySelector("#question");
 var answer1Span = document.querySelector("#answer1");
